@@ -1,0 +1,47 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'iret'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=iret",
+                    "--package=iret"
+                ],
+                "filter": {
+                    "name": "iret",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "terminal": "external"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'iret'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=iret",
+                    "--package=iret"
+                ],
+                "filter": {
+                    "name": "iret",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "terminal": "external"
+        }
+    ]
+}
