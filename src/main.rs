@@ -10,14 +10,18 @@ fn draw_noise(stdout: &mut Stdout, noise: &FastNoiseLite, offset: f32) {
 
     stdout.execute(MoveTo(0, 0)).unwrap();
 
+    let mut buf = vec![b' '; (size.0 * size.1) as usize];
+
     for y in 0..size.1 {
         for x in 0..size.0 {
             let value = (noise.get_noise_2d(x as f32, y as f32 + offset) + 1.0) / 2.0;
             let index = (value * BRIGHTNESS.len() as f32) as usize;
 
-            stdout.write(&[BRIGHTNESS[index]]).unwrap();
+            buf[(y * size.0 + x) as usize] = BRIGHTNESS[index];
         }
     }
+
+    stdout.write_all(&buf).unwrap();
 }
 
 fn main() {
